@@ -1,8 +1,7 @@
 a = "h234Fg3h5h35Bwjb3t"
-
-numbers_list = [char for char in a if 'a' <= char <= 'z']
-
-print(numbers_list)
+alphabets = [char for char in a if char.isalpha()]
+s = ', '.join(alphabets)
+print(s)
 
 '''
 Task: Print the alphabets in the given string
