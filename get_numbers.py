@@ -1,4 +1,11 @@
-# Task: get only numbers in a list from given string
-initial_string = "hjg234hg3h5h35bhjb3j"
+a = "h234Fg3h5h35Bwjb3t"
 
-# output = ['2', '3', '4', '3', '5', '3', '5', '3']
+numbers_list = [char for char in a if 'a' <= char <= 'z']
+
+print(numbers_list)
+
+'''
+Task: Print the alphabets in the given string
+Output: 
+h,F,g,h,h,B,w,j,b,t
+'''

@@ -1,5 +1,5 @@
-# Task: Take a user input and count the number of appearances of each alphabets
 '''
+Task: Take a user input and count the number of appearances of each alphabets
 Example: user_input = "abhishek"
 Output: 
 a = 1
