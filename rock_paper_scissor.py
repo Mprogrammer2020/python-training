@@ -17,3 +17,33 @@ Test Case:
 '''
 
 # Write your code here
+import random
+
+def rock_paper_scissors():
+    while True:
+        # Take user input
+        user_choice = input("Enter 'rock', 'paper', or 'scissor': ")
+        
+        # Validate user input
+        if user_choice not in ['rock', 'paper', 'scissor']:
+            print("Invalid input. Please enter 'rock', 'paper', or 'scissor'.")
+            continue
+        
+        # Computer's choice
+        computer_choice = random.choice(['rock', 'paper', 'scissor'])
+        print("Computer chose:", computer_choice)
+        
+        # Determine the winner
+        if user_choice == computer_choice:
+            print("It's a tie!")
+        elif (user_choice == 'rock' and computer_choice == 'scissor') or \
+             (user_choice == 'paper' and computer_choice == 'rock') or \
+             (user_choice == 'scissor' and computer_choice == 'paper'):
+            print("You win!")
+            break
+        else:
+            print("You lose!")
+            break
+
+# Test the game
+rock_paper_scissors()
