@@ -12,7 +12,7 @@ for i in range(n):
 
 
 '''
-Task: Print the given pattern with single loop
+Task: Print the given pattern  single loop
 Output:
 1
 22
