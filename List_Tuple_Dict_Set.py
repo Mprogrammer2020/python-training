@@ -31,15 +31,6 @@ print(list[-2:5:-4])
 list=["abhishek","satyam","shiva"]
 x = list.pop(1)
 
-#String Method
-# working of upper() function 
-text = 'python is great'
 
-# upper() function to convert 
-
-print(text.upper()) 
-
-# lower() function to convert  
-print(text.lower()) 
 
 
