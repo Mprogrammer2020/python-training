@@ -15,32 +15,39 @@ Rules:
 Test Case:
 1. User can only choose from 'rock', 'paper' or 'scissor'
 '''
+
+
 import random
 
 possible_actions = ["rock", "paper", "scissors"]
-# validate the user action
-while True:
-    user_action = input("Enter a choice (rock, paper, scissors): ").lower() 
-    if user_action in possible_actions:
-        break  
-    else:
-        print("Invalid choice. Please enter 'rock', 'paper', or 'scissors'.")
 
-computer_action = random.choice(possible_actions)
-if user_action == computer_action:
-    print(f"Both players selected {user_action}. It's a tie!")
-elif user_action == "rock":
-    if computer_action == "scissors":
+def determine_winner(user_action, computer_action):
+    if user_action == computer_action:
+        return "tie"
+    elif (user_action == "rock" and computer_action == "scissors") or \
+         (user_action == "paper" and computer_action == "rock") or \
+         (user_action == "scissors" and computer_action == "paper"):
+        return "user"
+    else:
+        return "computer" 
+
+while True:
+    # validate the user action
+    while True:
+        user_action = input("Enter a choice (rock, paper, scissors): ").lower() 
+        if user_action in possible_actions:
+            break  
+        else:
+            print("Invalid choice. Please enter 'rock', 'paper', or 'scissors'.")
+
+    computer_action = random.choice(possible_actions)
+    print(f"Computer chooses {computer_action}.")
+
+    winner = determine_winner(user_action, computer_action)
+    if winner == "tie":
+        print(f"It's a tie! Let's play again.")
+      
+    elif winner == "user":
         print("You win!")
-    else:
-        print("You lose.")
-elif user_action == "paper":
-    if computer_action == "rock":
-        print(" You win! ")
-    else:
-        print("You lose.")
-elif user_action == "scissors":
-    if computer_action == "paper":
-        print(" You win!")
-    else:
-        print("You lose.")
+    elif winner == "computer":
+        print("You Lose")
