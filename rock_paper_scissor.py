@@ -31,23 +31,23 @@ def determine_winner(user_action, computer_action):
     else:
         return "computer" 
 
+# Validate the user action
 while True:
-    # validate the user action
-    while True:
-        user_action = input("Enter a choice (rock, paper, scissors): ").lower() 
-        if user_action in possible_actions:
-            break  
-        else:
-            print("Invalid choice. Please enter 'rock', 'paper', or 'scissors'.")
+    user_action = input("Enter a choice (rock, paper, scissors): ").lower() 
+    if user_action in possible_actions:
+        break  
+    else:
+        print("Invalid choice. Please enter 'rock', 'paper', or 'scissors'.")
 
-    computer_action = random.choice(possible_actions)
-    print(f"Computer chooses {computer_action}.")
+# Computer selects an action randomly
+computer_action = random.choice(possible_actions)
+print(f"Computer chooses {computer_action}.")
 
-    winner = determine_winner(user_action, computer_action)
-    if winner == "tie":
-        print(f"It's a tie! Let's play again.")
-      
-    elif winner == "user":
-        print("You win!")
-    elif winner == "computer":
-        print("You Lose")
+# Determine the winner
+winner = determine_winner(user_action, computer_action)
+if winner == "tie":
+    print("It's a tie!")
+elif winner == "user":
+    print("You win!")
+else:
+    print("You lose!")
