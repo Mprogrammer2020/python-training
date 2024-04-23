@@ -16,38 +16,33 @@ Test Case:
 1. User can only choose from 'rock', 'paper' or 'scissor'
 '''
 
-
 import random
+def play_rock_paper_scissors():
+  
+  possible_action = ["rock", "paper", "scissors"]
 
-possible_actions = ["rock", "paper", "scissors"]
+  while True:
+    # Get user input
+    user_choice = input("Choose rock, paper, or scissors: ").lower()
 
-def determine_winner(user_action, computer_action):
-    if user_action == computer_action:
-        return "tie"
-    elif (user_action == "rock" and computer_action == "scissors") or \
-         (user_action == "paper" and computer_action == "rock") or \
-         (user_action == "scissors" and computer_action == "paper"):
-        return "user"
+    # Validate user input
+    if user_choice not in possible_action:
+      print("Invalid choice. Please choose rock, paper, or scissors.")
+      continue
+
+    computer_choice = random.choice(possible_action)
+
+    # Determine the winner
+    if user_choice == computer_choice:
+      print("It's a tie! play again.")
+    elif (user_choice == "rock" and computer_choice == "scissors") or \
+         (user_choice == "paper" and computer_choice == "rock") or \
+         (user_choice == "scissors" and computer_choice == "paper"):
+      print("You win. The computer chose", computer_choice)
+      return
     else:
-        return "computer" 
+      print("You lose. The computer chose", computer_choice)
+      return
 
-# Validate the user action
-while True:
-    user_action = input("Enter a choice (rock, paper, scissors): ").lower() 
-    if user_action in possible_actions:
-        break  
-    else:
-        print("Invalid choice. Please enter 'rock', 'paper', or 'scissors'.")
+play_rock_paper_scissors()
 
-# Computer selects an action randomly
-computer_action = random.choice(possible_actions)
-print(f"Computer chooses {computer_action}.")
-
-# Determine the winner
-winner = determine_winner(user_action, computer_action)
-if winner == "tie":
-    print("It's a tie!")
-elif winner == "user":
-    print("You win!")
-else:
-    print("You lose!")
