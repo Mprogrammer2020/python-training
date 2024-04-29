@@ -21,4 +21,53 @@ If user enter 'l', then: You guessed a wrong alphabet, 4 lives left
 If user enter 'a', then: You guessed a wrong alphabet, 3 lives left
 
 If user guesses the word: You won, You guessed the complete word: Abhishek
+
 '''
+actual_word = "Abhishek"
+given_word = "Ab-i--e-"
+
+def guess_word(actual_word, given_word):
+    lives = 5
+    guessed_letters = set()  
+    incorrect_guesses = []  
+
+    print("Complete the word by filling the blanks:")
+    print(given_word)
+
+    while lives > 0 and given_word != actual_word:
+        # Get user input
+        user_input = input("Enter guess the word): ").lower()
+
+        # Validate input
+        if len(user_input) == 1:
+            if not user_input.isalpha():
+                print("Invalid input. Please enter an alphabet")
+                continue 
+        elif user_input == actual_word:
+            print("You won! You guessed the complete word:", actual_word)
+            return 
+
+        if user_input in guessed_letters:
+            print("You already guessed that letter. Try again.")
+            continue
+
+        guessed_letters.add(user_input)  
+
+        if user_input in actual_word:
+            # Update the given word with the correct guess
+            for i in range(len(actual_word)):
+                if actual_word[i] == user_input:
+                    given_word = given_word[:i] + user_input + given_word[i + 1:]
+            print("You guessed the correct alphabet:", given_word)
+        else:
+            lives -= 1
+            incorrect_guesses.append(user_input)
+            print(f"You guessed a wrong alphabet. {lives} lives left. Incorrect guesses: {', '.join(incorrect_guesses)}")
+    # all guess wrong
+    if lives == 0:
+        print("You lost! The word was:", actual_word)
+    else:
+        print("You won! You guessed the complete word:", actual_word)
+
+
+guess_word(actual_word, given_word)
