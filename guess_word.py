@@ -1,7 +1,7 @@
 '''
 actual_word = "Abhishek"
 
-given_word = "Ab-i--e-"
+given_word = "ab-i--e-"
 
 - User can only see the given word
 - Take single alphabet input from user and put it in the place if it is in the given word
@@ -36,16 +36,12 @@ def guess_word(actual_word, given_word):
 
     while lives > 0 and given_word != actual_word:
         # Get user input
-        user_input = input("Enter guess the word): ").lower()
+        user_input = input("Enter a letter: ")
 
         # Validate input
-        if len(user_input) == 1:
-            if not user_input.isalpha():
-                print("Invalid input. Please enter an alphabet")
-                continue 
-        elif user_input == actual_word:
-            print("You won! You guessed the complete word:", actual_word)
-            return 
+        if len(user_input) != 1 or not user_input.isalpha():
+            print("Invalid input. Please enter a single alphabet.")
+            continue
 
         if user_input in guessed_letters:
             print("You already guessed that letter. Try again.")
@@ -58,16 +54,15 @@ def guess_word(actual_word, given_word):
             for i in range(len(actual_word)):
                 if actual_word[i] == user_input:
                     given_word = given_word[:i] + user_input + given_word[i + 1:]
-            print("You guessed the correct alphabet:", given_word)
+            print("You guessed the correct letter:", given_word)
         else:
             lives -= 1
             incorrect_guesses.append(user_input)
-            print(f"You guessed a wrong alphabet. {lives} lives left. Incorrect guesses: {', '.join(incorrect_guesses)}")
+            print(f"You guessed a wrong letter. {lives} lives left. Incorrect guesses: {', '.join(incorrect_guesses)}")
     # all guess wrong
     if lives == 0:
         print("You lost! The word was:", actual_word)
     else:
         print("You won! You guessed the complete word:", actual_word)
-
 
 guess_word(actual_word, given_word)
