@@ -31,10 +31,11 @@ def guess_word(actual_word, given_word):
     guessed_letters = set()  
     incorrect_guesses = []  
 
+    print("Complete the word by filling the blanks:")
     print(given_word)
 
     while lives > 0 and given_word != actual_word:
-        # Get user input and convert it to lowercase
+        
         user_input = input("Enter a letter: ").lower()
 
         # Validate input
@@ -49,9 +50,9 @@ def guess_word(actual_word, given_word):
         guessed_letters.add(user_input)  
 
         if user_input.lower() in actual_word.lower():
-            # Update the given word with the correct guess
+            # Update the given word 
             for i in range(len(actual_word)):
-                if actual_word[i].lower() == user_input:
+                if actual_word[i] == user_input:
                     given_word = given_word[:i] + actual_word[i] + given_word[i + 1:]
             print("You guessed the correct letter:", given_word)
         else:
