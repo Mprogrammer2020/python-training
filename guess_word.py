@@ -24,7 +24,7 @@ If user guesses the word: You won, You guessed the complete word: Abhishek
 
 '''
 actual_word = "Abhishek"
-given_word = "Ab-i--e-"
+given_word = "Ab-i-he-"
 
 def guess_word(actual_word, given_word):
     lives = 5
