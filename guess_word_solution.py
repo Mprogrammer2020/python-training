@@ -35,6 +35,7 @@ def guess_word():
     while lives > 0:
         user_input = input("Enter a letter: ").lower()
         if user_input in hidden_word:
+            hidden_word.remove(user_input)
             for i in range(len(actual_word)):
                 if actual_word[i].lower() == user_input:
                     given_word = given_word[:i] + actual_word[i] + given_word[i+1:]
