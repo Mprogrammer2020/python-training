@@ -1,7 +1,7 @@
 '''
 actual_word = "Abhishek"
 
-given_word = "ab-i--e-"
+given_word = "abhi--e-"
 
 - User can only see the given word
 - Take single alphabet input from user and put it in the place if it is in the given word
@@ -12,15 +12,17 @@ given_word = "ab-i--e-"
 - End the game when the lives are over or when user guess the complete word.
 
 Example:
-Complete the word by filling the blanks: Ab-i-e-
+Complete the word by filling the blanks: Abhi-e-
 
-If user enter 'k', then: You guessed the correct alphabet: Ab-i-ek
+If user enter 'k', then: You guessed the correct alphabet: Abhi-ek
 
 If user enter 'l', then: You guessed a wrong alphabet, 4 lives left
 
 If user enter 'a', then: You guessed a wrong alphabet, 3 lives left
 
 If again user enter 'k', then: You guessed a wrong alphabet, 2 lives left
+
+If user enter 'h', then: You guessed the correct alphabet: Abhihek
 
 If user guesses the word: You won, You guessed the complete word: Abhishek
 
