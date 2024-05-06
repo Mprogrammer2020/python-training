@@ -61,7 +61,6 @@ while total_cards > 0:
         justin_cards += total_cards
         total_cards = 0
 
-# Display the number of cards each person has received
 print("Daniel:", daniel_cards)
 print("Bryn:", bryn_cards)
 print("Phil:", phil_cards)
