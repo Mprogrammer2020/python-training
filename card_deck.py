@@ -37,7 +37,6 @@ def distribute_cards(total_cards, cards_per_player):
                 break
             num_cards += 1 
     return cards_per_player
-cards_per_player = distribute_cards(total_cards, cards_per_player)
-
+distribute_cards(total_cards, cards_per_player)
 for i in range(len(players)):
     print(f"{players[i]} received {cards_per_player[i]} cards.")
