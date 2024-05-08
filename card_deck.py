@@ -16,8 +16,7 @@ Bryn: 10 cards
 and so on.
 '''
 
-
-total_cards = 52
+total_cards = int(input("enetr the card:  "))
 players = ["Daniel", "Bryn", "Phil", "Justin"]
 
 cards_per_player = [0 for _ in players]
@@ -39,4 +38,4 @@ def distribute_cards(total_cards, cards_per_player):
     return cards_per_player
 distribute_cards(total_cards, cards_per_player)
 for i in range(len(players)):
-    print(f"{players[i]} received {cards_per_player[i]} cards.")
+    print(f"{players[i]} : {cards_per_player[i]} cards.")
