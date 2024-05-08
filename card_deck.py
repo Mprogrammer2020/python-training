@@ -16,7 +16,7 @@ Bryn: 10 cards
 and so on.
 '''
 
-total_cards = int(input("enetr the card:  "))
+total_cards = 52
 players = ["Daniel", "Bryn", "Phil", "Justin"]
 
 cards_per_player = [0 for _ in players]
