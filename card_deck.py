@@ -1,4 +1,4 @@
-'''But I've one issue 
+'''
 There are 52 cards in a deck of cards.
 
 There are 4 persons in the game, i.e Daniel, Bryn, Phil and Justin
@@ -20,7 +20,6 @@ total_cards = 52
 players = ["Daniel", "Bryn", "Phil", "Justin"]
 
 cards_per_player = [0 for _ in players]
-
 # Distribute cards
 def distribute_cards(total_cards, cards_per_player):
     num_cards = 1

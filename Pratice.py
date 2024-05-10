@@ -1,3 +1,4 @@
+
 '''[1] Write a Python program that accepts a sequence of comma-separated numbers from the user and generates a list and a tuple of those numbers'''
 
 value = (input("enter the number:  "))
@@ -34,8 +35,8 @@ sec_date = date(27,5,2)
 delta =first_date-sec_date
 print(delta.days)
 
-[6] #Write a  Python program to calculate the difference between a given number and 17. 
-def reverse_list_in_location(lst, start_pos, end_pos):
+ #Write a  Python program to calculate the difference between a given number and 17. 
+'''def reverse_list_in_location(lst, start_pos, end_pos):
     
     while start_pos < end_pos:
         lst[start_pos], lst[end_pos] = lst[end_pos], lst[start_pos]
@@ -45,7 +46,7 @@ def reverse_list_in_location(lst, start_pos, end_pos):
 number=[4,5,6,76,7,8,81,6]
 start_pos =2
 end_pos =5
-print(number)
+print(number)'''
 
 
 print(reverse_list_in_location(number, start_pos, end_pos))
@@ -107,17 +108,19 @@ elif n%2!=0:
     print("this is odd number")
     
 # check the element present in list or not
-def ele_check(data_group,n):
+'''def ele_check(data_group,n):
     for value in data_group:
         if value==n:
             return True
         return False
   
-print(ele_check([3,4,4,5,3,2],6))
+print(ele_check([3,4,4,5,3,2],6))'''
+
+#-------------------------
+
+
 
 
 
 
     
-
-
