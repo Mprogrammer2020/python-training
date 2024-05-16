@@ -1,43 +1,22 @@
-'''
-Task: Create a simple rock, paper, scissor game
+def guess_word():
+    actual_word = "Abhishek"
+    given_word = "abhi--e-"
+    lives = 5
+    hidden_word = {a for a, b in zip(actual_word.lower(), given_word.lower()) if b == "-"}
+    print("Complete the word by filling the blanks:", given_word)
+    while lives > 0:
+        user_input = input("Enter a letter: ").lower()
+        if user_input in hidden_word:
+            hidden_word.remove(user_input)
+            for i in range(len(actual_word)):
+                if actual_word[i].lower() == user_input:
+                    given_word = given_word[:i] + actual_word[i] + given_word[i+1:]
+            if given_word.lower() == actual_word.lower():
+                print("You won!, You guessed the complete word:", actual_word)
+                break
+            print("You guessed the correct alphabet:", given_word)
+        else:
+            lives -= 1
+            print("You guessed a wrong alphabet, ", lives, "lives left")
 
-Requirements:
-1. First take user input to choose either 'rock', 'paper' or 'scissor'
-2. Then computer will automatically choose either 'rock', 'paper' or 'scissor'
-3. If user wins, then print "You win", if computer wins, then print "You lose"
-4. If it's a tie, then again take user input and play the game again until user or computer wins
-
-Rules:
-1. rock beats scissor
-2. paper beats rock
-3. scissor beats paper
-
-Test Case:
-1. User can only choose from 'rock', 'paper' or 'scissor'
-'''
-
-# Write your code here
-import random
-
-user_action = input("Enter a choice (rock, paper, scissors): ")
-possible_actions = ["rock", "paper", "scissors"]
-computer_action = random.choice(possible_actions)
-print(f"\nYou chose {user_action}, computer chose {computer_action}.\n")
-
-if user_action == computer_action:
-    print(f"Both players selected {user_action}. It's a tie!")
-elif user_action == "rock":
-    if computer_action == "scissors":
-        print("Rock smashes scissors! You win!")
-    else:
-        print("Paper covers rock! You lose.")
-elif user_action == "paper":
-    if computer_action == "rock":
-        print("Paper covers rock! You win!")
-    else:
-        print("Scissors cuts paper! You lose.")
-elif user_action == "scissors":
-    if computer_action == "paper":
-        print("Scissors cuts paper! You win!")
-    else:
-        print("Rock smashes scissors! You lose.")
+guess_word()

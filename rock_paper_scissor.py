@@ -29,7 +29,6 @@ def play_rock_paper_scissors():
     if user_choice not in possible_action:
       print("Invalid choice. Please choose rock, paper, or scissors.")
       continue
-
     computer_choice = random.choice(possible_action)
 
     # Determine the winner
