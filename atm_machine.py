@@ -39,7 +39,7 @@ def withdraw_money(accounts):
         print(f"Rs.{amount} withdrawn successfully. Current Balance: Rs.{accounts[acc_num]}")
 
 def check_balance(accounts):
-    acc_num =int(input("Enter your account number: "))
+    acc_num =(input("Enter your account number: "))
     if acc_num not in accounts:
         print("Account does not exist.")
     else:
@@ -68,6 +68,6 @@ def main():
                 print("Thank For using This Bank")
                 break
         else:
-            print("Invalid choice. Please choose from '1', '2', '3', or '4'.")
+            print("Invalid choice. Please choose from '1', '2', '3', or '4','5'.")
 main()
 
