@@ -9,6 +9,15 @@ Test Case:
 2. User need to enter their account number for deposit, withdraw and check balance
 3. User is required to have Rs.1000 minimum balance in their account
 '''
+# Updates that need to be done
+'''
+1) Generate automatic 11 digit account number for new account.
+2) After the account generation, user need to set the 4 digit pin for the account.
+3) To perform any operation, user need to enter their account number and pin.
+4) Add fifth option Change PIN
+5) If user enter any wrong input at any step, it should ask user to enter correct input instead of going on first step.
+6) Given user an option to cancel the operation, which will lead user to initial step.
+'''
 def create_account(accounts):
     acc_num = input("Enter a new account number: ")
     if acc_num in accounts:
