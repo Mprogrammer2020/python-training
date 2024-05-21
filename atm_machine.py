@@ -8,6 +8,13 @@ Test Case:
 1. User can only choose from '1', '2', '3' or '4'
 2. User need to enter their account number for deposit, withdraw and check balance
 3. User is required to have Rs.1000 minimum balance in their account
+
+# updates that need to be done
+1) Generate automatic 11 digit account number for new account.
+2) After the account genration, user need to set the 4 digit pin for the account.
+3) Add fifth option cahnge PIN
+5) IF user enetr any wrong input at any step, it should ask user to enetr correct input insted of going on first step.
+6) Given user an option to cancel the operation,  which will lead user to intial step.
 '''
 import random
 def generate_account_number():
