@@ -8,11 +8,32 @@ Test Case:
 1. User can only choose from '1', '2', '3' or '4'
 2. User need to enter their account number for deposit, withdraw and check balance
 3. User is required to have Rs.1000 minimum balance in their account
+
+# updates that need to be done
+1) Generate automatic 11 digit account number for new account.
+2) After the account genration, user need to set the 4 digit pin for the account.
+3) Add fifth option cahnge PIN
+5) IF user enetr any wrong input at any step, it should ask user to enetr correct input insted of going on first step.
+6) Given user an option to cancel the operation,  which will lead user to intial step.
 '''
-def create_account(accounts):
-    acc_num = input("Enter a new account number: ")
-    if acc_num in accounts:
-        print("Account already exists.")
+import random
+def generate_account_number():
+  return ''.join(random.choices('0123456789', k=11))
+
+def deposit(account, amount):
+  try:
+    amount = int(amount)
+    account['balance'] += amount
+    print("Deposit successful. New balance: Rs.", account['balance'])
+  except ValueError:
+    print("Enter Ammount.")
+
+def withdraw(account, amount):
+  try:
+    amount = int(amount)
+    if account['balance'] - amount >= 1000:
+      account['balance'] -= amount
+      print("Withdrawal successful.", account['balance'])
     else:
       print("Insufficient balance. Minimum balance of Rs.1000 must be maintained.")
   except ValueError:
