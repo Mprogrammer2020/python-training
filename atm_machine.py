@@ -17,117 +17,122 @@ Test Case:
 6) Given user an option to cancel the operation,  which will lead user to intial step.
 '''
 import random
+
 def generate_account_number():
-  return ''.join(random.choices('0123456789', k=11))
+    return ''.join(random.choices('0123456789', k=11))
 
 def deposit(account, amount):
-  try:
-    amount = int(amount)
-    account['balance'] += amount
-    print("Deposit successful. New balance: Rs.", account['balance'])
-  except ValueError:
-    print("Enter Ammount.")
+    try:
+        amount = int(amount)
+        account['balance'] += amount
+        print("Deposit successful. New balance: Rs.", account['balance'])
+    except ValueError:
+        print("Enter Amount.")
 
 def withdraw(account, amount):
-  try:
-    amount = int(amount)
-    if account['balance'] - amount >= 1000:
-      account['balance'] -= amount
-      print("Withdrawal successful.", account['balance'])
-    else:
-      print("Insufficient balance. Minimum balance of Rs.1000 must be maintained.")
-  except ValueError:
-    print("Invalid amount. Please enter a numeric value.")
+    try:
+        amount = int(amount)
+        if account['balance'] - amount >= 1000:
+            account['balance']= amount
+            print("Withdrawal successful. New balance:", account['balance'])
+        else:
+            print("Insufficient balance. Minimum balance of Rs.1000 must be maintained.")
+    except ValueError:
+        print("Invalid amount. Please enter a numeric value.")
 
 def check_balance(account):
-  print("Your current balance is Rs.", account['balance'])
+    print("Your current balance is Rs.", account['balance'])
 
 def change_pin(account, new_pin):
-  account['pin'] = new_pin
-  print("PIN changed successfully.")
+    account['pin'] = new_pin
+    print("PIN changed successfully.")
 
 def is_numeric(text):
-  return text.isdigit()
+    return text.isdigit()
 
 def main():
-  accounts = {}
-  
-  while True:
-    print("1. Create Account")
-    print("2. Deposit Money")
-    print("3. Withdraw Money")
-    print("4. Check Balance")
-    print("5. Change PIN")
-    choice = input("Enter your choice 1 to 5: ")
+    accounts = {}
 
-    if choice not in ['1', '2', '3', '4', '5']:
-      print("Invalid choice. Please choose from 1 to 5.")
-      continue
+    while True:
+        print("1. Open Account")
+        print("2. Deposit Money")
+        print("3. Withdraw Money")
+        print("4. Check Balance")
+        print("5. Change PIN")
 
-    if choice == '1':
-      account_number = generate_account_number()
-      while True:
-        pin = input("Enter your 4 digit PIN: ")
-        if is_numeric(pin) and len(pin) == 4:
-          break
-        else:
-          print("Invalid PIN. Please enter a 4-digit numeric PIN.")
-      balance = 1000
-      accounts[account_number] = {'pin': pin, 'balance': balance}
-      print("Account created successfully. Your account number is:", account_number)
+        choice = input("Enter your choice 1 to 5: ")
 
-    elif choice in ['2', '3', '4', '5']:
-      while True:
-        account_number = input("Enter your account number or type to cancel: ")
-        if account_number.lower()=='cancel':    
-         break
-        
-        if not is_numeric(account_number):
-          print("Invalid account number. Please enter only numeric digits.")
-          continue
+        if choice not in ['1', '2', '3', '4', '5']:
+            print("Invalid choice. Please choose from 1 to 5.")
+            continue
 
-        pin = input("Enter your PIN: ")
-        if not is_numeric(pin):
-          print("Invalid PIN. Please enter only numeric digits.")
-          continue
+        if choice == '1':
+            account_number = generate_account_number()
+            while True:
+                pin = input("Enter your 4 digit PIN: ")
+                if is_numeric(pin) and len(pin) == 4:
+                    break
+                else:
+                    print("Invalid PIN. Please enter a 4-digit numeric PIN.")
+            balance = 1000
+            accounts[account_number] = {'pin': pin, 'balance': balance}
+            print("Account created successfully. Your account number is:", account_number)
 
-        account = accounts.get(account_number)
-        if account is None:
-          print("Invalid account number. Please try again.")
-          continue
+        elif choice in ['2', '3', '4', '5']:
+            while True:
+                account_number = input("Enter your account number or type cancel: ")
+                if account_number.lower() == 'cancel':
+                    break
 
-        if pin != account['pin']:
-          print("Invalid PIN. Please try again.")
-          continue
+                account = accounts.get(account_number)
+                if not account:
+                    print("Invalid account number. Please try again.")
+                    continue
 
-        #  deposit, withdraw, check balance, change pin
-        if choice == '2':
-          while True:
-            amount = input("Enter amount to deposit: ")
-            
-            if is_numeric(amount):
-              deposit(account, amount)
-              break
-            else:
-              print("Invalid amount. Please enter a numeric value.")
-        elif choice == '3':
-          while True:
-            amount = input("Enter amount to withdraw: ")
-            if is_numeric(amount):
-              withdraw(account, amount)
-              break
-            else:
-              print("Invalid amount. Please enter a numeric value.")
-        elif choice == '4':
-          check_balance(account)
-        elif choice == '5':
-          while True:
-            new_pin = input("Enter your new 4 digit PIN: ")
-            if is_numeric(new_pin) and len(new_pin) == 4:
-              change_pin(account, new_pin)
-              break
-            else:
-              print("Invalid PIN. Please enter a 4-digit numeric PIN.")
-        break  
-    
+                pin = input("Enter your PIN  or type cancel: ")
+                if pin.lower()== 'cancel':
+                  break
+                if not is_numeric(pin):
+                    print("Invalid PIN. Please enter only numeric digits.")
+                    continue
+
+                if pin != account['pin']:
+                    print("Invalid PIN. Please try again.")
+                    continue
+               
+               #  deposit, withdraw, check balance, change pin
+                if choice == '2':
+                    while True:
+                        amount = input("Enter amount to deposit or type cancel: ")
+                        if amount.lower() == 'cancel':
+                            break
+                        elif is_numeric(amount):
+                            deposit(account, amount)
+                            break
+                        else:
+                            print("Invalid amount. Please enter a numeric value.")
+                elif choice == '3':
+                    while True:
+                        amount = input("Enter amount to withdraw or type cancel: ")
+                        if amount.lower() == 'cancel':
+                            break
+                        elif is_numeric(amount):
+                            withdraw(account, amount)
+                            break
+                        else:
+                            print("Invalid amount. Please enter a numeric value.")
+                elif choice == '4':
+                    check_balance(account)
+                elif choice == '5':
+                    while True:
+                        new_pin = input("Enter your new 4 digit PIN or type cancel): ")
+                        if new_pin.lower() == 'cancel':
+                            break
+                        elif is_numeric(new_pin) and len(new_pin) == 4:
+                            change_pin(account, new_pin)
+                            break
+                        else:
+                            print("Invalid PIN. Please enter a 4-digit numeric PIN.")              
+                         
+                break  
 main()
