@@ -1,0 +1,28 @@
+Create a basic crud operation based system for users
+
+1) Make a user signup with following details:
+- Email (must be unique)
+- Password
+- Profile Photo (optional)
+- Name
+- Date of Birth
+
+2) User login with Email and Password
+- If credentials are invalid show error
+
+3) After login show other registered users profile list, with their name, email:
+- User should able to search user on the basis of name, email
+- Pagination should be implemented (only show 10 users on a single page)
+
+4) User detail page:
+- User should be able to view full user details of other users like name, email, profile photo, date of birth
+
+5) User should be able to view and edit their own profile details, which includes:
+- Name
+- Email
+- Date of Birth
+- Profile Photo
+
+6) User should be able to change their password
+
+7) Logout functionality
