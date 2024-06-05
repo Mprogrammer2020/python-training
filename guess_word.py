@@ -25,7 +25,7 @@ def guess_word(actual_word, given_word):
 
         if user_input in actual_word.lower():
             guessed_letters.add(user_input)
-            # Update the given word
+            # Update the given 
             for i in range(len(actual_word)):
                 if actual_word[i].lower() == user_input:
                     given_word = given_word[:i] + actual_word[i] + given_word[i + 1:]

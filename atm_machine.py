@@ -10,11 +10,13 @@ Test Case:
 3. User is required to have Rs.1000 minimum balance in their account
 
 # updates that need to be done
+
 1) Generate automatic 11 digit account number for new account.
 2) After the account genration, user need to set the 4 digit pin for the account.
 3) Add fifth option cahnge PIN
 5) IF user enetr any wrong input at any step, it should ask user to enetr correct input insted of going on first step.
-6) Given user an option to cancel the operation,  which will lead user to intial step.
+6) Given user an option to cancel the operation,  which w1
+ill lead user to intial step.
 '''
 import random
 
@@ -23,7 +25,7 @@ def generate_account_number():
 
 def deposit(account, amount):
     try:
-        amount = int(amount)
+        amount = float(amount)
         account['balance'] += amount
         print("Deposit successful. New balance: Rs.", account['balance'])
     except ValueError:
@@ -31,9 +33,9 @@ def deposit(account, amount):
 
 def withdraw(account, amount):
     try:
-        amount = int(amount)
+        amount = float(amount)
         if account['balance'] - amount >= 1000:
-            account['balance']= amount
+            account['balance'] -= amount
             print("Withdrawal successful. New balance:", account['balance'])
         else:
             print("Insufficient balance. Minimum balance of Rs.1000 must be maintained.")

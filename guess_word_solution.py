@@ -40,7 +40,7 @@ def guess_word():
         if user_input in hidden_word:
             hidden_word.remove(user_input)
             for i in range(len(actual_word)):
-                if actual_word[i].lower() == u ser_input:
+                if actual_word[i].lower() == user_input:
                     given_word = given_word[:i] + actual_word[i] + given_word[i+1:]
             if given_word.lower() == actual_word.lower():
                 print("You won!, You guessed the complete word:", actual_word)
