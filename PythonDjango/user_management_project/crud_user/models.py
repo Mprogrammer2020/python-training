@@ -8,6 +8,5 @@ class User(AbstractUser):
     date_of_birth = models.DateField(null=True, blank=True)
 
 
-    # Add other profile fields as needed
 
 

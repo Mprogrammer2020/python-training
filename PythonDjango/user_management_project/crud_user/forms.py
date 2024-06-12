@@ -11,10 +11,3 @@ class UserLoginForm(forms.Form):
     email = forms.EmailField()
     password = forms.CharField(widget=forms.PasswordInput)
 
-class UserProfileForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'date_of_birth']
-
-class PasswordChangeCustomForm(PasswordChangeForm):
-    pass
