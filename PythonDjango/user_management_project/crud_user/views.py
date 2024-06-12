@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import UserSignUpForm, UserLoginForm, UserProfileForm, PasswordChangeCustomForm
+from .forms import UserSignUpForm, UserLoginForm
 from .models import User
 
 def signup(request):
@@ -35,12 +35,10 @@ def user_login(request):
 @login_required
 def user_list(request):
     users = User.objects.all()
-    # Add search functionality
     query = request.GET.get('q')
     if query:
         users = users.filter(email__icontains=query) | users.filter(username__icontains=query)
-    # Add pagination
-    # You can use Django's built-in pagination or third-party packages like django-pagination
+   
     return render(request, 'user_list.html', {'users': users})
 
 @login_required
@@ -48,16 +46,5 @@ def user_detail(request, user_id):
     user = User.objects.get(pk=user_id)
     return render(request, 'user_detail.html', {'user': user})
 
-@login_required
-def user_profile(request):
-    user = request.user
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Profile updated successfully.')
-    else:
-        form = UserProfileForm(instance=user)
-    return render(request, 'user_profile.html', {'form': form})
 
 
