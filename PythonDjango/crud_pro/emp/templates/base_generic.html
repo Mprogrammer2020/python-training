@@ -1,0 +1,24 @@
+<!-- base_generic.html -->
+<!DOCTYPE html>
+<html>
+<head>
+          <title>{% block title %} DJango Crud {% endblock %}</title>
+</head>
+<body>
+<nav>
+<ul>
+   <li><a href="{% url 'profile_list' %}">Profile List</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'edit_profile' %}">Edit Profile</a></li>
+                <li><a href="{% url 'change_password' %}">Change Password</a></li>
+                <li><a href="{% url 'user_logout' %}">Logout</a></li>
+            {% else %}
+                <li><a href="{% url 'signup' %}">Signup</a></li>
+                <li><a href="{% url 'login' %}">Login</a></li>
+            {% endif %}
+        </ul>
+        </nav>
+         {% block content %}
+        {% endblock %}
+        </body>
+       </html>
