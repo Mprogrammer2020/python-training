@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'your-secret-key'
+SECRET_KEY = '7b78238d14d944be9ba2bddfce8abe761c66b9d88939bbea'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -122,10 +122,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'emp.CustomUser'
 
 # Redirect URLs after login/logout
-LOGIN_REDIRECT_URL = 'profile_list'
-LOGOUT_REDIRECT_URL = 'login'
 
-\
 # settings.py
-SESSION_ENGINE = 'django.contrib.sessions.backends.db'  # Or appropriate backend
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'  
 
