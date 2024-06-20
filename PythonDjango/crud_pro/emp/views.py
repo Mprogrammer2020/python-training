@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, authenticate, update_session_auth_hash, logout
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.contrib.auth.forms import PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
-from .models import CustomUser
+from django.db.models import Q
+from .models import CustomUser  
 from .forms import CustomUserCreationForm, UserLoginForm, CustomUserChangeForm
 
 def signup(request):
@@ -13,7 +13,7 @@ def signup(request):
         if form.is_valid():
             user = form.save()
             login(request, user)  
-            return redirect('profile_list')
+            return redirect('login')
     else:
         form = CustomUserCreationForm()
     return render(request, 'signup.html', {'form': form})
@@ -29,7 +29,7 @@ def user_login(request):
                 login(request, user)
                 return redirect('profile_list')
             else:
-                error = "Invalid credentials. Please try again."
+                error = "Invalid email pr password. Please try again."
                 return render(request, 'login.html', {'form': form, 'error': error})
     else:
         form = UserLoginForm()
@@ -37,11 +37,25 @@ def user_login(request):
 
 @login_required
 def profile_list(request):
-    users = CustomUser.objects.all()
-    paginator = Paginator(users, 10)
+    queryset = CustomUser.objects.all()
+
+    # Search functionality
+    query = request.GET.get('q')
+    if query:
+        queryset = queryset.filter(Q(username__icontains=query) | Q(email__icontains=query))
+
+    # Pagination
+    paginator = Paginator(queryset, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
-    return render(request, 'profile_list.html', {'page_obj': page_obj})
+
+    # Check if queryset is empty
+    if query and not page_obj.object_list.exists():
+        message = "No such user found."
+    else:
+        message = None
+
+    return render(request, 'profile_list.html', {'page_obj': page_obj, 'query': query, 'message': message})
 
 @login_required
 def user_detail(request, user_id):
@@ -65,7 +79,7 @@ def change_password(request):
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
-            update_session_auth_hash(request, user)  
+            update_session_auth_hash(request, user)
             return redirect('profile_list')
     else:
         form = PasswordChangeForm(request.user)
