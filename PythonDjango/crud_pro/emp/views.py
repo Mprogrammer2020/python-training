@@ -6,13 +6,25 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Q
 from .models import CustomUser  
 from .forms import CustomUserCreationForm, UserLoginForm, CustomUserChangeForm
+from django.core.mail import send_mail
+from django.conf import settings
+from django.core.mail import EmailMessage
+
 
 def signup(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  
+
+            # Send welcome email
+            subject = 'SEND MAIL'
+            message = 'Welcome to join us!'
+            email_from = settings.EMAIL_HOST_USER
+            recipient_list = [user.email]  # Assuming CustomUser model has an email field
+            send_mail(subject, message, email_from, recipient_list)
+
+            login(request, user)
             return redirect('login')
     else:
         form = CustomUserCreationForm()
