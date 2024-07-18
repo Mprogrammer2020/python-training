@@ -1,0 +1,46 @@
+Create a crud operation based APIs
+
+1) Make a user signup API with following details:
+- Email (must be unique)
+- Password
+- Profile Photo (optional)
+- Name
+- Date of Birth
+
+- If user with same email already exists, show error: User with this email already exists.
+- After succssfull signup user will receive a welcome email.
+- There should be a login token in the response as well after signup with user details.
+
+
+2) User login with Email and Password API:
+- If credentials are invalid show error: Invalid credentials.
+- If credentials are valid, api should respond with user details with login token.
+
+
+3) Other registered users list API:
+- User list apis with their details.
+- Pagination should be implemented (only show 10 users on a single page).
+- User should be able to search user on the basis of name, email.
+
+4) User detail API:
+- User should be able to view full user details of other users like name, email, profile photo, date of birth.
+
+5) API to view and edit their own profile details, which includes:
+- Name
+- Email
+- Date of Birth
+- Profile Photo
+- After the edit, user should receive the updated profile details in the api.
+
+6) Change Password API
+- After changing password user should be able to login with new password.
+
+7) Forgot Password API
+- This will send user an random 6 digit otp on their email.
+
+8) Reset Password API
+- After the user receives the otp, in this api, user have to enter the otp, email and new password.
+- After resetting password user should be able to login with new password.
+
+9) Logout API
+- After logout, users previous token should not work.
