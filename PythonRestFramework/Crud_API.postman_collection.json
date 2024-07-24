@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "a5f88c7a-88a7-48e0-822f-8758f7f9e4f0",
+		"name": "Crud_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37004169",
+		"_collection_link": "https://abhishek-9004.postman.co/workspace/abhishek-Workspace~77b9130d-b2a1-4cdc-8526-6020c76a05d9/collection/37004169-a5f88c7a-88a7-48e0-822f-8758f7f9e4f0?action=share&source=collection_link&creator=37004169"
+	},
+	"item": [
+		{
+			"name": "signup",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "cdd3aa2e549b79fd181981b25f3c87215f708cca\n",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"testing@gmail.com\",\r\n    \"password\": \"@ac308581aeb32d2ed67a5a39982e1f5d9e662e03\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_login",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token cc6dad6f0084b49905b83da8ed6df41b70f0bca4",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/edit_profile/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"edit_profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user_edit_page",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "user_list",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "Search_by_name",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "password_change",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
