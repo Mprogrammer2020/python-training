@@ -111,6 +111,9 @@ def password_change(request):
         return Response({'detail': 'Password changed successfully'}, status=status.HTTP_200_OK) 
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+#Forgot_Pssword
+
 @api_view(['POST'])
 def forgot_password(request):
     email = request.data.get('email')
@@ -135,6 +138,8 @@ def forgot_password(request):
     send_mail(subject, message, email_from, recipient_list)
 
     return Response({'detail': 'OTP sent successfully'}, status=status.HTTP_200_OK)
+
+#Reset_Password
 
 @api_view(['POST'])
 def reset_password(request):
