@@ -1,4 +1,4 @@
-import random
+#import random
 from django.utils.crypto import get_random_string
 from rest_framework import status,filters,generics
 from rest_framework.decorators import api_view
@@ -79,10 +79,6 @@ class UserListView(generics.ListAPIView):
     search_fields = ['name', 'email']
     pagination_class = PageNumberPagination 
 
-# Retrieve the profile of the authenticated user
-    def get_object(self):
-        return self.request.user 
-
 #Edit_Page
 class UserProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserDetailsSerializer
@@ -92,7 +88,6 @@ class UserProfileView(generics.RetrieveUpdateAPIView):
         return self.request.user 
     
 #Password_Updae
-
 @api_view(['POST'])
 def password_change(request):
     serializer = PasswordChangeSerializer(data=request.data)
@@ -112,7 +107,7 @@ def password_change(request):
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-#Forgot_Pssword
+#Forgot_password
 
 @api_view(['POST'])
 def forgot_password(request):
