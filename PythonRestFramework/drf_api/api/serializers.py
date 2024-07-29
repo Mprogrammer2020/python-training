@@ -1,12 +1,6 @@
 from rest_framework import serializers
 from .models import User
 
-
-class UserLoginSerializer(serializers.Serializer):
-    email = serializers.EmailField(max_length=250)
-    password = serializers.CharField(write_only=True)
-
-# Ensure your other serializers remain unchanged
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
 
@@ -18,6 +12,13 @@ class UserSerializer(serializers.ModelSerializer):
         password = validated_data.pop('password')
         user = User.objects.create_user(password=password, **validated_data)
         return user
+        
+#user_login
+
+class UserLoginSerializer(serializers.Serializer):
+    email = serializers.EmailField(max_length=250)
+    password = serializers.CharField(write_only=True)
+
 
 class UserDetailsSerializer(serializers.ModelSerializer):
     class Meta:

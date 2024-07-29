@@ -12,6 +12,7 @@ from django.conf import settings
 from .serializers import UserSerializer,UserLoginSerializer,UserDetailsSerializer,PasswordChangeSerializer
 from .models import User
 
+#signup_page
 @api_view(['POST'])
 def user_signup(request):
     serializer = UserSerializer(data=request.data)
@@ -38,6 +39,7 @@ def user_signup(request):
         }, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+#login_page
 @api_view(['POST'])
 def user_login(request):
     serializer = UserLoginSerializer(data=request.data)
