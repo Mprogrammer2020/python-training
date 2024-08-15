@@ -148,7 +148,6 @@ def reset_password(request):
     otp = request.data.get('otp')
     new_password = request.data.get('new_password')
 
-    # Check for missing required fields
     if not email or not otp or not new_password:
         return Response({'detail': 'Email, OTP, and new password are required.'}, status=status.HTTP_400_BAD_REQUEST)
 
@@ -157,9 +156,6 @@ def reset_password(request):
     except CustomUser.DoesNotExist:
         return Response({'detail': 'Invalid OTP or email'}, status=status.HTTP_400_BAD_REQUEST)
 
-    # Check token expiration here if implemented
-    # if user.reset_password_token_expiry < datetime.now():
-    #     return Response({'detail': 'Token expired'}, status=status.HTTP_400_BAD_REQUEST)
 
     user.set_password(new_password)
     user.reset_password_token = None  # Clear token after successful reset
