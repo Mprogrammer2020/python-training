@@ -103,7 +103,6 @@ def password_change(request):
         old_password = serializer.validated_data.get('old_password')
         new_password = serializer.validated_data.get('new_password')
         user = request.user
-
         if not user.check_password(old_password):
            return Response({'detail': 'Invalid old password'}, status=status.HTTP_400_BAD_REQUEST)
         user.set_password(new_password)
