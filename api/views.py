@@ -15,8 +15,6 @@ from rest_framework.authtoken.models import Token
 from rest_framework.permissions import IsAuthenticated
 
 
-
-
 # Create your views here.
 
 #user_signup
@@ -51,13 +49,10 @@ def login_api(request):
         user = authenticate(request, email=email, password=password)
         
         if user is not None:
-            # Generate or get the token
             token, created = Token.objects.get_or_create(user=user)
             
-            # Serialize user details
             user_serializer = UserSerializer(user)
             
-            # Return user details with token
             return Response({'user_details': user_serializer.data,'token': token.key }, status=status.HTTP_200_OK)
         else:
             return Response({'Error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
@@ -81,7 +76,6 @@ def list_api(request):
     paginator = LimitOffsetPagination()
     paginated_queryset = paginator.paginate_queryset(queryset, request)  
     serializer = user_detalis(paginated_queryset, many=True)
-    # Return data
     return paginator.get_paginated_response(serializer.data)
 
 #update_profile
@@ -128,7 +122,6 @@ def forgot_password(request):
     if not users.exists():
         return Response({'detail': 'User not found'}, status=status.HTTP_404_NOT_FOUND)
     user = users.first()
-    # Generate OTP
     otp = get_random_string(length=6, allowed_chars='0123456789')
     user.reset_password_token = otp
     user.save()
@@ -158,7 +151,8 @@ def reset_password(request):
 
 
     user.set_password(new_password)
-    user.reset_password_token = None  # Clear token after successful reset
+    user.reset_password_token = None  
     user.save()
 
     return Response({'detail': 'Password reset successfully'}, status=status.HTTP_200_OK)
+
