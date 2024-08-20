@@ -161,7 +161,7 @@ def reset_password(request):
 @api_view(['POST'])
 @permission_classes([IsAuthenticated])
 
-def logout(request):
+def logout_api(request):
     token = Token.objects.filter(user=request.user).first()  
     if token:
         token.delete()
