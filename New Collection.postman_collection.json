@@ -1,0 +1,72 @@
+{
+	"info": {
+		"_postman_id": "424ad212-e625-477b-873c-9e9ef35223d5",
+		"name": "New Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37004169",
+		"_collection_link": "https://abhishek-9004.postman.co/workspace/abhishek-Workspace~77b9130d-b2a1-4cdc-8526-6020c76a05d9/collection/37004169-424ad212-e625-477b-873c-9e9ef35223d5?action=share&source=collection_link&creator=37004169"
+	},
+	"item": [
+		{
+			"name": "TEST_API",
+			"item": [
+				{
+					"name": "Signup_api",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "login_api",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "User_list",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "forget_pass",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "logout_api",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "update_profile",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "update_pass",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
