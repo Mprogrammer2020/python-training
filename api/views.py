@@ -23,11 +23,9 @@ from rest_framework.permissions import IsAuthenticated
 def signup_api(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
-        user = serializer.save()
-        
+        user = serializer.save()    
         #token
-        token,created= Token.objects.get_or_create(user=user)
-            
+        token,created= Token.objects.get_or_create(user=user)        
         # send mail
         subject = "TestPage"
         message = 'Welcome to Joining Us!.'
@@ -57,8 +55,11 @@ def login_api(request):
         else:
             return Response({'Error': 'Invalid credentials'}, status=status.HTTP_401_UNAUTHORIZED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-      
+  
+  
+  #User_details    
 @api_view()
+@permission_classes([IsAuthenticated])
 def detalis_api(request):
     user=request.user
     Serializer=user_detalis(user) 
@@ -67,6 +68,7 @@ def detalis_api(request):
 #user_list
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def list_api(request):  
     search = request.query_params.get('search', None)
     queryset = CustomUser.objects.all()   
@@ -80,17 +82,16 @@ def list_api(request):
 
 #update_profile
 
-@api_view(['PUT', 'PATCH'])
+@api_view(['PUT','PATCH'])
 @permission_classes([IsAuthenticated])
+
 def update_profile(request):
-        serializer = user_detalis(request.user,data=request.data)
+        serializer = user_detalis(request.user,data=request.data,partial=request.method=='PATCH')
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-    
-    
+  
 #update_password 
    
 @api_view(['POST'])
@@ -103,6 +104,7 @@ def password_change(request):
         old_password = serializer.validated_data.get('old_password')
         new_password = serializer.validated_data.get('new_password')
         user = request.user
+
         if not user.check_password(old_password):
            return Response({'detail': 'Invalid old password'}, status=status.HTTP_400_BAD_REQUEST)
         user.set_password(new_password)
@@ -133,6 +135,7 @@ def forgot_password(request):
 
     return Response({'detail': 'OTP sent successfully'})
 
+#reset_password
 
 @api_view(['POST'])
 def reset_password(request):
@@ -148,10 +151,20 @@ def reset_password(request):
     except CustomUser.DoesNotExist:
         return Response({'detail': 'Invalid OTP or email'}, status=status.HTTP_400_BAD_REQUEST)
 
-
     user.set_password(new_password)
     user.reset_password_token = None  
     user.save()
 
     return Response({'detail': 'Password reset successfully'}, status=status.HTTP_200_OK)
 
+#logout
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+
+def logout(request):
+    token = Token.objects.filter(user=request.user).first()  
+    if token:
+        token.delete()
+        return Response({'message': 'Logged out successfully'}, status=status.HTTP_200_OK)
+    
+    
